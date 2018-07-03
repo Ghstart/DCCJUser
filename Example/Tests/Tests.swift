@@ -13,16 +13,27 @@ class Tests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+    func testSetToken() {
+        DCCJUser.setToken("newToken", callback: nil)
+        XCTAssert(DCCJUser.getToken() == "newToken")
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure() {
-            // Put the code you want to measure the time of here.
-        }
+    func testGetTokenFromUserDefault() {
+        XCTAssert(DCCJUser.getToken() == "newToken")
     }
     
+    func testRemoveToken() {
+        DCCJUser.setToken("", callback: nil)
+        XCTAssert(DCCJUser.getToken() == "")
+    }
+    
+    func testGetTokenFromUserDefaultAgain() {
+        print(DCCJUser.getToken())
+        XCTAssert(DCCJUser.getToken() == "")
+    }
+    
+    func testSetTokenAgain() {
+        DCCJUser.setToken("secondToken", callback: nil)
+        XCTAssert(DCCJUser.getToken() == "secondToken")
+    }
 }

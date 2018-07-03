@@ -1,0 +1,6 @@
+framework module DCCJUser {
+  umbrella header "DCCJUser-umbrella.h"
+
+  export *
+  module * { export * }
+}

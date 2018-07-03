@@ -1,0 +1,6 @@
+framework module Pods_DCCJUser_Example {
+  umbrella header "Pods-DCCJUser_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

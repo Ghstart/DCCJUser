@@ -7,12 +7,23 @@
 //
 
 import UIKit
+import DCCJUser
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+//        let t = DCCJUser.getToken()
+//        print("toke is \(t)")
+//        
+//        DCCJUser.setToken("newToken") { (successed) in
+//            if (successed) {
+//                print("done")
+//            } else {
+//                print("error")
+//            }
+//        }
     }
 
     override func didReceiveMemoryWarning() {

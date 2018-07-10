@@ -10,15 +10,17 @@ import Foundation
 
 public class DCCJUser {
     
-    private static var TOKEN_KEY: String = "TOKEN_KEY"
+    private let TOKEN_KEY: String = "TOKEN_KEY"
     
-    public static func setToken(_ t: String, callback: ((Bool) -> Void)?) {
+    public init() {}
+    
+    public func setToken(_ t: String, callback: ((Bool) -> Void)?) {
         if (!t.isEmpty) {
-            UserDefaults.standard.set(t, forKey: DCCJUser.TOKEN_KEY)
+            UserDefaults.standard.set(t, forKey: self.TOKEN_KEY)
             UserDefaults.standard.synchronize()
             if let c = callback { c(true) }
         } else if t.isEmpty {
-            UserDefaults.standard.removeObject(forKey: DCCJUser.TOKEN_KEY)
+            UserDefaults.standard.removeObject(forKey: self.TOKEN_KEY)
             UserDefaults.standard.synchronize()
             if let c = callback { c(true) }
         } else {
@@ -26,8 +28,8 @@ public class DCCJUser {
         }
     }
     
-    public static func getToken() -> String {
-        if let t = UserDefaults.standard.object(forKey: DCCJUser.TOKEN_KEY) as? String {
+    public func getToken() -> String {
+        if let t = UserDefaults.standard.object(forKey: self.TOKEN_KEY) as? String {
             return t
         }
         return ""

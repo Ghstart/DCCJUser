@@ -3,6 +3,8 @@ import DCCJUser
 
 class Tests: XCTestCase {
     
+    private let user = DCCJUser()
+    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -14,26 +16,26 @@ class Tests: XCTestCase {
     }
     
     func testSetToken() {
-        DCCJUser.setToken("newToken", callback: nil)
-        XCTAssert(DCCJUser.getToken() == "newToken")
+        self.user.setToken("newToken", callback: nil)
+        XCTAssert(self.user.getToken() == "newToken")
     }
     
     func testGetTokenFromUserDefault() {
-        XCTAssert(DCCJUser.getToken() == "newToken")
+        XCTAssert(self.user.getToken() == "newToken")
     }
     
     func testRemoveToken() {
-        DCCJUser.setToken("", callback: nil)
-        XCTAssert(DCCJUser.getToken() == "")
+        self.user.setToken("", callback: nil)
+        XCTAssert(self.user.getToken() == "")
     }
     
     func testGetTokenFromUserDefaultAgain() {
-        print(DCCJUser.getToken())
-        XCTAssert(DCCJUser.getToken() == "")
+        print(self.user.getToken())
+        XCTAssert(self.user.getToken() == "")
     }
     
     func testSetTokenAgain() {
-        DCCJUser.setToken("secondToken", callback: nil)
-        XCTAssert(DCCJUser.getToken() == "secondToken")
+        self.user.setToken("secondToken", callback: nil)
+        XCTAssert(self.user.getToken() == "secondToken")
     }
 }

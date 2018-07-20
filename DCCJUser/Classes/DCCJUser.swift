@@ -10,28 +10,64 @@ import Foundation
 
 public class DCCJUser {
     
-    private let TOKEN_KEY: String = "TOKEN_KEY"
+    private let TOKEN_KEY: String       = "TOKEN_KEY"
+    private let USERINFO_KEY: String    = "USERINFO_KEY"
+    
+    public var userInfo: UserInfoResponse?
+    public typealias Handler = (Result<UserInfoResponse, NSError>) -> Void
+    
+    public enum UserInfoTypes {
+        case allUserInfo
+        case onlyToken
+    }
+    
+    public enum UserInfoError: Error {
+        case authorized(e: Error)
+    }
+    
+    public enum Result<V, E: Swift.Error> {
+        case success(V)
+        case failure(E)
+    }
     
     public init() {}
     
-    public func setToken(_ t: String, callback: ((Bool) -> Void)?) {
-        if (!t.isEmpty) {
-            UserDefaults.standard.set(t, forKey: self.TOKEN_KEY)
-            UserDefaults.standard.synchronize()
-            if let c = callback { c(true) }
-        } else if t.isEmpty {
-            UserDefaults.standard.removeObject(forKey: self.TOKEN_KEY)
-            UserDefaults.standard.synchronize()
-            if let c = callback { c(true) }
-        } else {
-            if let c = callback { c(false) }
+    public var token: String  {
+        set {
+            if !newValue.isEmpty {
+                UserDefaults.standard.set(newValue, forKey: self.TOKEN_KEY)
+                UserDefaults.standard.synchronize()
+            } else {
+                UserDefaults.standard.removeObject(forKey: self.TOKEN_KEY)
+                UserDefaults.standard.synchronize()
+            }
+        }
+        get {
+            return UserDefaults.standard.object(forKey: self.TOKEN_KEY) as? String ?? ""
         }
     }
     
-    public func getToken() -> String {
-        if let t = UserDefaults.standard.object(forKey: self.TOKEN_KEY) as? String {
-            return t
+    public func authorize(by userInfoData: Data, then handler: @escaping Handler) {
+        do {
+            self.userInfo = try JSONDecoder().decode(UserInfoResponse.self, from: userInfoData)
+            if let u = self.userInfo {
+                handler(.success(u))
+                UserDefaults.standard.set(u, forKey: self.USERINFO_KEY)
+                UserDefaults.standard.synchronize()
+            }
+        } catch let e as NSError {
+            handler(.failure(e))
         }
-        return ""
+    }
+    
+    public func clear(by: UserInfoTypes = .allUserInfo) {
+        switch by {
+        case .allUserInfo:
+            UserDefaults.standard.removeObject(forKey: self.USERINFO_KEY)
+            UserDefaults.standard.synchronize()
+        case .onlyToken:
+            UserDefaults.standard.removeObject(forKey: self.TOKEN_KEY)
+            UserDefaults.standard.synchronize()
+        }
     }
 }

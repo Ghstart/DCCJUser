@@ -16,26 +16,26 @@ class Tests: XCTestCase {
     }
     
     func testSetToken() {
-        self.user.setToken("newToken", callback: nil)
-        XCTAssert(self.user.getToken() == "newToken")
+        self.user.token = "newToken"
+        XCTAssert(self.user.token == "newToken")
     }
     
     func testGetTokenFromUserDefault() {
-        XCTAssert(self.user.getToken() == "newToken")
+        XCTAssert(self.user.token == "newToken")
     }
     
     func testRemoveToken() {
-        self.user.setToken("", callback: nil)
-        XCTAssert(self.user.getToken() == "")
+        self.user.token = ""
+        XCTAssert(self.user.token == "")
     }
     
     func testGetTokenFromUserDefaultAgain() {
-        print(self.user.getToken())
-        XCTAssert(self.user.getToken() == "")
+        print(self.user.token)
+        XCTAssert(self.user.token == "")
     }
     
     func testSetTokenAgain() {
-        self.user.setToken("secondToken", callback: nil)
-        XCTAssert(self.user.getToken() == "secondToken")
+        self.user.token = "secondToken"
+        XCTAssert(self.user.token == "secondToken")
     }
 }

@@ -13,7 +13,7 @@ public class DCCJUser {
     private let TOKEN_KEY: String       = "TOKEN_KEY"
     private let USERINFO_KEY: String    = "USERINFO_KEY"
     
-    public var userInfo: UserInfoResponse?
+    public var userInfo: UserSecondData?
     public typealias Handler = (Result<UserInfoResponse, NSError>) -> Void
     
     public enum UserInfoTypes {
@@ -49,9 +49,10 @@ public class DCCJUser {
     
     public func authorize(by userInfoData: Data, then handler: @escaping Handler) {
         do {
-            self.userInfo = try JSONDecoder().decode(UserInfoResponse.self, from: userInfoData)
-            if let u = self.userInfo {
-                handler(.success(u))
+            let userInfoResponse = try JSONDecoder().decode(UserInfoResponse.self, from: userInfoData)
+            handler(.success(userInfoResponse))
+            if let u = userInfoResponse.data {
+                self.userInfo = u
                 UserDefaults.standard.set(u, forKey: self.USERINFO_KEY)
                 UserDefaults.standard.synchronize()
             }

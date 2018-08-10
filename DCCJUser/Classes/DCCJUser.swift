@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import DCCJConfig
 
 public class DCCJUser {
     
@@ -14,7 +15,7 @@ public class DCCJUser {
     private let USERINFO_KEY: String    = "USERINFO_KEY"
     
     public var userInfo: UserSecondData?
-    public typealias Handler = (Result<UserInfoResponse, NSError>) -> Void
+    public typealias Handler = (Result<UserInfoResponse>) -> Void
     
     public enum UserInfoTypes {
         case allUserInfo
@@ -23,11 +24,6 @@ public class DCCJUser {
     
     public enum UserInfoError: Error {
         case authorized(e: Error)
-    }
-    
-    public enum Result<V, E: Swift.Error> {
-        case success(V)
-        case failure(E)
     }
     
     public init() {}
@@ -56,7 +52,7 @@ public class DCCJUser {
                 UserDefaults.standard.set(u, forKey: self.USERINFO_KEY)
                 UserDefaults.standard.synchronize()
             }
-        } catch let e as NSError {
+        } catch let e {
             handler(.failure(e))
         }
     }

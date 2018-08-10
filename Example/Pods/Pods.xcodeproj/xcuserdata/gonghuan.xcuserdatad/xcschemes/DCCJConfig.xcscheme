@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6C93D72CDE9682CED444B5A4F110DEA0"
-               BuildableName = "Pods_DCCJUser_Example.framework"
-               BlueprintName = "Pods-DCCJUser_Example"
+               BlueprintIdentifier = "A05E01D54222A2EEDC65DDFFECCEF7C1"
+               BuildableName = "DCCJConfig.framework"
+               BlueprintName = "DCCJConfig"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6C93D72CDE9682CED444B5A4F110DEA0"
-            BuildableName = "Pods_DCCJUser_Example.framework"
-            BlueprintName = "Pods-DCCJUser_Example"
+            BlueprintIdentifier = "A05E01D54222A2EEDC65DDFFECCEF7C1"
+            BuildableName = "DCCJConfig.framework"
+            BlueprintName = "DCCJConfig"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

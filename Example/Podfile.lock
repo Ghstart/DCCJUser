@@ -1,15 +1,26 @@
 PODS:
-  - DCCJUser (0.1.2)
+  - DCCJConfig (0.1.8):
+    - DCCJConfig/DataManagerError (= 0.1.8)
+    - DCCJConfig/Result (= 0.1.8)
+  - DCCJConfig/DataManagerError (0.1.8)
+  - DCCJConfig/Result (0.1.8)
+  - DCCJUser (0.1.4):
+    - DCCJConfig (~> 0.1.8)
 
 DEPENDENCIES:
   - DCCJUser (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - DCCJConfig
 
 EXTERNAL SOURCES:
   DCCJUser:
     :path: "../"
 
 SPEC CHECKSUMS:
-  DCCJUser: 2da922402daff09513e27a80263f7e63db0380ca
+  DCCJConfig: a3dd6b8edf21e9a79d45bd0bee5287fa9b2473dc
+  DCCJUser: 4ce9139d3061d4001f9453458cde19acc4bad8e5
 
 PODFILE CHECKSUM: 6130c2786601fe8fa13c6900ff7ede3846590474
 

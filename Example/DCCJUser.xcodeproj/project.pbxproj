@@ -306,10 +306,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DCCJUser_Example/Pods-DCCJUser_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DCCJConfig/DCCJConfig.framework",
 				"${BUILT_PRODUCTS_DIR}/DCCJUser/DCCJUser.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DCCJConfig.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DCCJUser.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

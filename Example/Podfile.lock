@@ -4,7 +4,7 @@ PODS:
     - DCCJConfig/Result (= 0.1.8)
   - DCCJConfig/DataManagerError (0.1.8)
   - DCCJConfig/Result (0.1.8)
-  - DCCJUser (0.1.4):
+  - DCCJUser (0.1.5):
     - DCCJConfig (~> 0.1.8)
 
 DEPENDENCIES:
@@ -20,7 +20,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   DCCJConfig: a3dd6b8edf21e9a79d45bd0bee5287fa9b2473dc
-  DCCJUser: 4ce9139d3061d4001f9453458cde19acc4bad8e5
+  DCCJUser: 8a65fa20cf9f9a7596c470d4e360bb92299182cd
 
 PODFILE CHECKSUM: 6130c2786601fe8fa13c6900ff7ede3846590474
 

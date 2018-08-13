@@ -14,7 +14,18 @@ public class DCCJUser {
     private let TOKEN_KEY: String       = "TOKEN_KEY"
     private let USERINFO_KEY: String    = "USERINFO_KEY"
     
-    public var userInfo: UserSecondData?
+    enum DCCJUserError: Error {
+        case unknowError
+    }
+    
+    public lazy var userInfo: UserSecondData? = {
+        if let decoded = UserDefaults.standard.object(forKey: self.USERINFO_KEY) as? Data,
+            let decodedUserInfo = try? PropertyListDecoder().decode(UserSecondData.self, from: decoded) {
+            return decodedUserInfo
+        }
+        return nil
+    }()
+    
     public typealias Handler = (Result<UserInfoResponse>) -> Void
     
     public enum UserInfoTypes {
@@ -46,11 +57,15 @@ public class DCCJUser {
     public func authorize(by userInfoData: Data, then handler: @escaping Handler) {
         do {
             let userInfoResponse = try JSONDecoder().decode(UserInfoResponse.self, from: userInfoData)
-            handler(.success(userInfoResponse))
             if let u = userInfoResponse.data {
-                self.userInfo = u
-                UserDefaults.standard.set(u, forKey: self.USERINFO_KEY)
-                UserDefaults.standard.synchronize()
+                if let t = u.accessToken { self.token = t }
+                let defaults = UserDefaults.standard
+                defaults.set(try? PropertyListEncoder().encode(u), forKey: self.USERINFO_KEY)
+                defaults.synchronize()
+                
+                handler(.success(userInfoResponse))
+            } else {
+                handler(.failure(DCCJUserError.unknowError))
             }
         } catch let e {
             handler(.failure(e))
@@ -68,3 +83,4 @@ public class DCCJUser {
         }
     }
 }
+

@@ -10,9 +10,9 @@ import Foundation
 public struct UserInfoResponse: Codable {
     let success: Bool
     let resultMessage: String?
-    let resultCode: Int
+    let resultCode: String
     let data: UserSecondData?
-    init(success: Bool, resultMessage: String?, resultCode: Int, data: UserSecondData?) {
+    init(success: Bool, resultMessage: String?, resultCode: String, data: UserSecondData?) {
         self.success = success
         self.resultMessage = resultMessage
         self.resultCode = resultCode
@@ -33,20 +33,21 @@ public struct UserInfoData: Codable {
         case UserGenderTypeFemale
     }
     
-    let Balance: String
+    let balance: String?
     let carCount: Int
-    let defaultBankCard: String
+    let defaultBankCard: String?
     let gender: UserGenderType
-    let headPhotoUrl: String
-    let hycBalance: String
-    let idCard: String
+    let headPhotoUrl: String?
+    let hycBalance: String?
+    let idCard: String?
     let isLoginPasswordSet: Int
     let isPayPasswordSet: Int
     let isVerified: Int
     let loginCount: Int
-    let loginPswSetToken: String
+    let loginPswSetToken: String?
     let memberId: String
-    let nickName: String
+    let nickName: String?
     let phoneNumber: String
-    let realName: String
+    let realName: String?
 }
+

@@ -1,6 +1,6 @@
 {
   "name": "DCCJUser",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "summary": "This is UserInfo Module",
   "description": "This is UserInfo Module. It cares about everything of User",
   "homepage": "https://github.com/Ghstart/DCCJUser",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/Ghstart/DCCJUser.git",
-    "tag": "0.1.5"
+    "tag": "0.1.6"
   },
   "platforms": {
     "ios": "9.0"

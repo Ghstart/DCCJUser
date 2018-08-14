@@ -14,8 +14,18 @@ public class DCCJUser {
     private let TOKEN_KEY: String       = "TOKEN_KEY"
     private let USERINFO_KEY: String    = "USERINFO_KEY"
     
-    enum DCCJUserError: Error {
+    public enum DCCJUserError: Error {
         case unknowError
+        case decodeeError(err: Error)
+        
+        public var errorMessage: String {
+            switch self {
+            case .unknowError:
+                return "未知异常"
+            case .decodeeError(let err):
+                return err.localizedDescription
+            }
+        }
     }
     
     public lazy var userInfo: UserSecondData? = {
@@ -68,7 +78,7 @@ public class DCCJUser {
                 handler(.failure(DCCJUserError.unknowError))
             }
         } catch let e {
-            handler(.failure(e))
+            handler(.failure(DCCJUserError.decodeeError(err: e)))
         }
     }
     
@@ -83,4 +93,5 @@ public class DCCJUser {
         }
     }
 }
+
 

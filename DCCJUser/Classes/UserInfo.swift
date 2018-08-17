@@ -8,46 +8,40 @@
 import Foundation
 
 public struct UserInfoResponse: Codable {
-    let success: Bool
-    let resultMessage: String?
-    let resultCode: String
-    let data: UserSecondData?
-    init(success: Bool, resultMessage: String?, resultCode: String, data: UserSecondData?) {
-        self.success = success
-        self.resultMessage = resultMessage
-        self.resultCode = resultCode
-        self.data = data
-    }
+    public let success: Bool
+    public let resultMessage: String?
+    public let resultCode: String
+    public let data: UserSecondData?
 }
 
 public struct UserSecondData: Codable {
-    let userInfo: UserInfoData?
-    let accessToken: String?
+    public let userInfo: UserInfoData?
+    public let accessToken: String?
 }
 
 public struct UserInfoData: Codable {
     
-    enum UserGenderType: Int, Codable {
-        case UserGenderTypeUnknown = 0
-        case UserGenderTypeMale
-        case UserGenderTypeFemale
-    }
+//    enum UserGenderType: Int, Codable {
+//        case UserGenderTypeUnknown = 0
+//        case UserGenderTypeMale
+//        case UserGenderTypeFemale
+//    }
     
-    let balance: String?
-    let carCount: Int
-    let defaultBankCard: String?
-    let gender: UserGenderType
-    let headPhotoUrl: String?
-    let hycBalance: String?
-    let idCard: String?
-    let isLoginPasswordSet: Int
-    let isPayPasswordSet: Int
-    let isVerified: Int
-    let loginCount: Int
-    let loginPswSetToken: String?
-    let memberId: String
-    let nickName: String?
-    let phoneNumber: String
-    let realName: String?
+    public let balance: String?
+    public let carCount: Int
+    public let defaultBankCard: String?
+    public let gender: Int
+    public let headPhotoUrl: String?
+    public let hycBalance: String?
+    public let idCard: String?
+    public let isLoginPasswordSet: Int
+    public let isPayPasswordSet: Int
+    public let isVerified: Int
+    public let loginCount: Int
+    public let loginPswSetToken: String?
+    public let memberId: String
+    public let nickName: String?
+    public let phoneNumber: String
+    public let realName: String?
 }
 

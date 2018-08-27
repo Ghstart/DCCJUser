@@ -92,5 +92,33 @@ public class DCCJUser {
             UserDefaults.standard.synchronize()
         }
     }
+    
+    public var isIdentity: Bool {
+        if let r = self.info?.userInfo?.realName, !r.isEmpty, let idCard = self.info?.userInfo?.idCard, !idCard.isEmpty {
+            
+            return true
+            
+        } else if let v = self.info?.userInfo?.isVerified, v == 1 {
+            
+            return true
+        }
+        
+        return false
+    }
+    
+    public var displayName: String {
+        if let name = self.info?.userInfo?.realName, !name.isEmpty {
+            var stringDatas = [String]()
+            for i in 0..<name.count {
+                if i == 0 {
+                    stringDatas.append(String(name[..<name.index(name.startIndex, offsetBy: 1)]))
+                } else {
+                    stringDatas.append("*")
+                }
+            }
+            return stringDatas.joined()
+        }
+        return ""
+    }
 }
 

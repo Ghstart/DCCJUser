@@ -28,13 +28,13 @@ public class DCCJUser {
         }
     }
     
-    public lazy var info: UserSecondData? = {
+    public var info: UserSecondData? {
         if let decoded = UserDefaults.standard.object(forKey: self.USERINFO_KEY) as? Data,
             let decodedUserInfo = try? PropertyListDecoder().decode(UserSecondData.self, from: decoded) {
             return decodedUserInfo
         }
         return nil
-    }()
+    }
     
     public typealias Handler = (Result<UserInfoResponse>) -> Void
     
